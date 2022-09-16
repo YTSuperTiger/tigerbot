@@ -12,8 +12,9 @@ bot = commands.Bot(command_prefix = '*')
 class integration(commands.Cog):
 
   def __init__(self, bot):
-    self.bot = bot
-    
+    intents = discord.Intents(messages=True, guilds=True)
+    self.bot = bot(intents=intents)
+
   def setup(self,bot):
     id = ctx.message.guild.id
     db["{0}.setup".format(id)] = True

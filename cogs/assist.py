@@ -3,8 +3,6 @@ import time
 from time import gmtime, strftime
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix = '*')
-
 class help(commands.Cog):
 
   def __init__(self, bot):
@@ -28,5 +26,5 @@ class help(commands.Cog):
 
 
 
-def setup(bot):
-    bot.add_cog(help(bot))
+async def setup(bot):
+  await bot.add_cog(help(bot))

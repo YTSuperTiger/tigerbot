@@ -9,7 +9,9 @@ bot = commands.Bot(command_prefix = '*')
 class webhook(commands.Cog):
 
   def __init__(self, bot):
-    self.bot = bot
+    intents = discord.Intents(messages=True, guilds=True)
+    self.bot = bot(intents=intents)
+    
   @bot.command
   async def webhook(self, ctx, info):
     webhook = Webhook.from_url('webhook-url-here', adapter=RequestsWebhookAdapter())

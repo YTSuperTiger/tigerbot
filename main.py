@@ -7,9 +7,17 @@ from discord.ext.commands import has_permissions
 
 token = os.environ['discord_token']
 
-bot = commands.Bot(command_prefix = '^')
+intents = discord.Intents.all()
+
+
+bot = commands.Bot(command_prefix = '^', intents=intents)
 bot.remove_command("help")
-  
+
+@bot.command()
+async def ping(ctx):
+  await ctx.send("Pong")
+
+
 @bot.event
 async def on_ready():
     print("======[ BOT ONLINE! ]======")
@@ -67,11 +75,11 @@ async def unload_error(ctx, error):
 async def reload(ctx, extension):
     if ctx.message.author.id == 363865768305098763:
         try:
-            bot.unload_extension("cogs.{}".format(extension))
+            await bot.reload_extension("cogs.{}".format(extension))
         except discord.ext.commands.ExtensionNotLoaded:
             await ctx.send("Cog wasn't loaded, attempting to load", delete_after=5)
         try:
-            bot.load_extension("cogs.{}".format(extension))
+            await bot.load_extension("cogs.{}".format(extension))
             await ctx.message.add_reaction("✅")
         except discord.ext.commands.ExtensionAlreadyLoaded:
             await ctx.send("Cog already loaded!")
@@ -90,18 +98,29 @@ async def reload_error(ctx, error):
         await ctx.message.add_reaction("❌")
         await ctx.send(f"""```⚠ {error}
 [ℹ] for more information check the console```""")
-
 path = "./cogs"
 
 dir_list = os.listdir(path) 
-
 print(dir_list)
-for filename in os.listdir("./cogs"):
-    if filename.endswith(".py"):
-        try:
-            bot.load_extension("cogs.{}".format(filename[:-3]))
-        except Exception as e:
-            print("========[ WARNING ]========")
-            print(f"An error occurred while loading '{filename}'""")
-print(token)
+#async def load_cogs():
+# for filename in os.listdir("./cogs"):
+#      if filename.endswith(".py"):
+#          try:
+#              await bot.load_extension("cogs.{}".format(filename[:-3]))
+#          except Exception as e:
+#              print("========[ WARNING ]========")
+#              print(f"An error occurred while loading '{filename}'""")
+
+async def load_cogs() -> None:
+    for file in os.listdir(f"./cogs"):
+        if file.endswith(".py"):
+            extension = file[:-3]
+            try:
+                await bot.load_extension(f"cogs.{extension}")
+                print(f"Loaded extension '{extension}'")
+            except Exception as e:
+                exception = f"{type(e).__name__}: {e}"
+                print(f"Failed to load extension {extension}\n{exception}")
+              
+asyncio.run(load_cogs())
 bot.run(token, reconnect=True)

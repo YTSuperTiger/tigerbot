@@ -64,14 +64,14 @@ unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "discord"
-version = "2.0.0"
+version = "1.7.3"
 description = "A mirror package for discord.py. Please install that instead."
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-"discord.py" = ">=2.0.0"
+"discord.py" = ">=1.7.3"
 
 [[package]]
 name = "discord.py"
@@ -97,6 +97,14 @@ description = "A list-like structure which implements collections.abc.MutableSeq
 category = "main"
 optional = false
 python-versions = ">=3.7"
+
+[[package]]
+name = "helpers"
+version = "0.2.0"
+description = "Improved developer experience, accumulated."
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "idna"
@@ -137,7 +145,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "2e63711f205813884e28912b10ac3424099758c3718183b39ea41e911f568ad5"
+content-hash = "12a605639530ac9e793bc09dc6971a65fe258330a6800cbfa926c7dc3991d328"
 
 [metadata.files]
 aiohttp = []
@@ -148,6 +156,7 @@ charset-normalizer = []
 discord = []
 "discord.py" = []
 frozenlist = []
+helpers = []
 idna = []
 multidict = []
 yarl = []

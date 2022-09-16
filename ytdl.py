@@ -1,10 +1,15 @@
-import discord, functools, itertools
+import discord, functools, itertools, asyncio
 import youtube_dl
 from async_timeout import timeout
 from discord.ext import commands, tasks
 from discord.utils import get
 
 class ytdl(commands.Cog):
+  
+  def __init__(self, bot):
+    intents = discord.Intents(messages=True, guilds=True)
+    self.bot = bot(intents=intents)
+  
   youtube_dl.utils.bug_reports_message = lambda: ''
   
   

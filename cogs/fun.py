@@ -9,7 +9,7 @@ cog = commands.Cog()
 
 class Fun(commands.Cog):
   def __init__(self, bot):
-    self.bot = bot
+     self.bot = bot
 
   @commands.command()
   async def sacrifice(self, ctx, member : discord.Member, owdi):
@@ -17,12 +17,6 @@ class Fun(commands.Cog):
     embed.add_field(name="Sacrifice", value=f"{member} has been ```SACRIFICED``` to {0}".format(owdi), inline=False)
     embed.add_field(name="Respects", value="Pay your respects by sending "F" in the chat below.", inline=True)
     await ctx.send(embed=embed)
-
-
-  @commands.command(name="hello", aliases=["hi"])
-  async def say_hello(self, ctx):
-    await ctx.send(f"{choice(('Hello', 'Hi', 'Hey', 'Hiya'))} {ctx.author.mention}!")
-
 
   @commands.command(name="echo", aliases=["say"])
   async def echo_message(self, ctx, *, message):
@@ -47,5 +41,5 @@ class Fun(commands.Cog):
     em.set_author(name="{0}".format(ctx.author), icon_url=ctx.author.avatar_url)
     em.add_field(name="Echo", value="{0}".format(message), inline=False)
     await ctx.send(embed=em)
-def setup(bot):
-	bot.add_cog(Fun(bot))
+async def setup(bot):
+	await bot.add_cog(Fun(bot))
