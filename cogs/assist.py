@@ -18,7 +18,7 @@ class help(commands.Cog):
     embed.add_field(name="Test", value="Test", inline=True)
     embed.add_field(name="Test", value="Test", inline=False)
     embed.add_field(name="Test", value="Test", inline=True)
-    await ctx.send(embed=embed)
+    await ctx.reply(embed=embed)
 
 
     
