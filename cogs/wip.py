@@ -1,4 +1,5 @@
-import discord
+import discord, datetime, random
+from datetime import date
 from discord import app_commands
 from discord.ext import commands
 import traceback
@@ -8,13 +9,21 @@ TEST_GUILD = discord.Object(1010532040858419231)
 class Feedback(discord.ui.Modal, title='Feedback'):
   name = discord.ui.TextInput(
       label='Name',
-      placeholder='Your name here...',
+      placeholder='Your name here... (EX: @user#0000)',
+      required=True,
+      max_length=300,
   )
-  feedback = discord.ui.TextInput(
-      label='What do you think of this new feature?',
+  user = discord.ui.TextInput(
+      label='User you are reporting',
+      placeholder='Users tag here... (EX: @user#0000)',
+      required=True,
+      max_length=300,
+  )
+  report = discord.ui.TextInput(
+      label='Reason',
       style=discord.TextStyle.long,
       placeholder='Type your feedback here...',
-      required=False,
+      required=True,
       max_length=300,
   )
 
@@ -51,14 +60,19 @@ class wip(commands.Cog):
   
   @app_commands.guilds(1010532040858419231)
   @app_commands.command(description="Submit feedback")
-  async def feedback(self, interaction: discord.Interaction):
+  async def report(self, interaction: discord.Interaction):
       await interaction.response.send_modal(Feedback())
   @commands.command()
   async def viewmodel(self, ctx):
     view = Confirm()
     await ctx.send('Do you want to continue?', view=view)
     await view.wait()
+  @app_commands.guilds(1010532040858419231)
+  @app_commands.command(description="daysofsorrow")
+  async def daysofsorrow(self, interaction: discord.Interaction):
+    x=date.today()
+    days = {0:"Massacre Monday / Mobster Monday", 1:"Terrorism Tuesday / Torture Tuesday", 2:"War Crime Wednesday / Wiretapping Wednesday", 3:"Thieving Thursday",4:"Femboy Friday",5:"Smuggling Saturday / Substance Saturday",7:"Sacraficial Sunday / Stolen Property Sunday"}
+    interaction.response.send_message("Today is {0}".format(days[x.weekday()]))
 
-    
 async def setup(bot):
   await bot.add_cog(wip(bot))

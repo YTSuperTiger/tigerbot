@@ -10,6 +10,9 @@ async-timeout = "^4.0.2"
 discord = "^1.7.0"
 youtube_dl = "^2021.12.17"
 helpers = "^0.2.0"
+PyNaCl = "^1.5.0"
+ffmpeg = "^1.4"
+Flask = "^2.2.2"
 
 [tool.poetry.dev-dependencies]
 

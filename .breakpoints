@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "cogs/wip.py": [
+      {
+        "id": "e7c4c5ed-eced-4d85-85fc-07be1fd1e5d6",
+        "line": 74,
+        "version": 1022,
+        "index": 2489
+      }
+    ]
+  }
 }

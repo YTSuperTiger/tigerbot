@@ -41,5 +41,8 @@ class Fun(commands.Cog):
     em.set_author(name="{0}".format(ctx.author), icon_url=ctx.author.avatar_url)
     em.add_field(name="Echo", value="{0}".format(message), inline=False)
     await ctx.send(embed=em)
+  @commands.command(name="rem3")
+  async def rem3(self, ctx):
+    await ctx.reply("User targeted for ||-----||")
 async def setup(bot):
 	await bot.add_cog(Fun(bot))
